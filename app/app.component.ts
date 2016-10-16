@@ -19,5 +19,8 @@ export class AppComponent implements OnInit {
      ngOnInit(): void {
          this.ListeTask = TASK;
     }
+    deleteTask(task:TaskItem){
+        this.ListeTask.splice(task.id, 1);
+    }
 
 }

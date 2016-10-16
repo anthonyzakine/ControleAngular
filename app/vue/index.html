@@ -8,7 +8,7 @@
         
 
         <!--appeller la directive par son selector en envoyant item-->
-        <list-team [item]="item"></list-team>
+        <list-team [item]="item" (DeleteTaskData)="deleteTask($event)" ></list-team>
 
     </section>
     

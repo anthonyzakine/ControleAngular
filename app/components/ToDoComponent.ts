@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Config } from '../config';
 import {TaskItem} from "../model/task.model";
 import { TaskService } from "../services/tache.service";
@@ -10,9 +13,9 @@ import { TaskService } from "../services/tache.service";
     providers: [TaskService],
 })
 
-export class DashboardComponent {
+export class DashboardComponent  implements OnInit{
 
-      ListeTask:TaskItem[] ;
+    ListeTask:TaskItem[] =[];
 
     selectedTask: TaskItem;
     newTask:TaskItem;
@@ -35,9 +38,19 @@ export class DashboardComponent {
     }
 
     TaskList: TaskItem[];
-    
-    constructor( private taskService: TaskService ){
-        this.resetInput();
-        this.ListeTask = this.taskService.getTasks();
+
+     constructor(
+        private taskService: TaskService,
+        private route: ActivatedRoute,
+        private location: Location
+    ) {}
+
+     ngOnInit(): void {
+        this.route.params.forEach((params: Params) => {
+            let id = +params['id'];
+            this.taskService.getTask(id).then(data => this.newTask = data);
+        })
     };
+    
+
  }

@@ -1,9 +1,12 @@
 import { Component,OnInit } from '@angular/core';
 
 import { Config } from './config';
-//importer le model
+// Import des class pour configurer des routes dynamiques : à propos des routes dynamiques https://goo.gl/Qe53YN
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+
 import {TaskItem} from "../app/model/task.model";
-//importer mes données 
+
 import {TASK} from "../app/datas/task.data";
 
 
@@ -15,12 +18,26 @@ export class AppComponent implements OnInit {
 
     ListeTask:TaskItem[] ;
 
-    //on initialise la liste de tache au lancement de la page
-     ngOnInit(): void {
-         this.ListeTask = TASK;
+    selectedTask: TaskItem;
+    newTask:TaskItem;
+    //ajout dans la liste une tache
+    addNewTask(task:TaskItem){
+        this.ListeTask.push(task);
+        this.resetInput();
+
     }
+    //init l'input pour pouvoir en rajouter plusieurs
+    resetInput(){
+        this.newTask = {id: 0, name: ''}
+    }
+    //supprime une tache en fonction de son id
     deleteTask(task:TaskItem){
         this.ListeTask.splice(task.id, 1);
+    }
+
+     ngOnInit(): void {
+          this.resetInput();
+         this.ListeTask = TASK;
     }
 
 }

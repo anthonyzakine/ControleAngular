@@ -2,12 +2,16 @@
 
 <main>
 
+     <section  >
 
-    <h4>Liste des taches a effectuer</h4>
+        <!--appeller la directive(selector) en envoyant selectedTeam-->
+        <add-task [newTask]="newTask" (AddTaskData)="addNewTask($event)" ></add-task>
+
+    </section>
+
+    <h4>Liste des taches a effectuer</h4>   
     <section *ngFor="let item of ListeTask" >
         
-
-        <!--appeller la directive par son selector en envoyant item-->
         <list-team [item]="item" (DeleteTaskData)="deleteTask($event)" ></list-team>
 
     </section>

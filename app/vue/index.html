@@ -1,21 +1,13 @@
 <h1>Controle AngularJS</h1>
 
-<main>
+     <nav>
+        <!-- Configurer les liens des routes : à propos des routes -->
+        <a routerLink="/dashboard">Tache à faire</a> <a routerLink="/archive">Archive</a>
+    </nav>
 
-     <section  >
+    <!-- Ajouter la directive router-outlet pour afficher les vues des routes --->
+<router-outlet></router-outlet>
 
-        <!--appeller la directive(selector) en envoyant selectedTeam-->
-        <add-task [newTask]="newTask" (AddTaskData)="addNewTask($event)" ></add-task>
 
-    </section>
 
-    <h4>Liste des taches a effectuer</h4>   
-    <section *ngFor="let item of ListeTask" >
-        
-        <list-team [item]="item" (DeleteTaskData)="deleteTask($event)" ></list-team>
-
-    </section>
-    
-
-</main>
 

@@ -1,0 +1,17 @@
+<h1>Controle AngularJS</h1>
+
+<main>
+
+
+    <h4>Liste des taches a effectuer</h4>
+    <section *ngFor="let item of ListeTask" >
+        
+
+        <!--appeller la directive par son selector en envoyant item-->
+        <list-team [item]="item"></list-team>
+
+    </section>
+    
+
+</main>
+
